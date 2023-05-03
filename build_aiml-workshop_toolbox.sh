@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NAME=sagemaker
+NAME=aiml-workshop
 
 # Create container
 

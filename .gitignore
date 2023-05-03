@@ -1,5 +1,6 @@
 **/.idea
 **/.DS_Store
+ziplib/
 *.zip
 .terraform/
 .terraform.lock.hcl
