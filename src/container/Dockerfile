@@ -17,6 +17,7 @@ RUN pip3 install --no-cache-dir -r /opt/program/requirements.txt
 # keeps Python from writing the .pyc files which are unnecessary in this case. We also update
 # PATH so that the train and serve programs are found when the container is invoked.
 
+
 ENV PYTHONUNBUFFERED=TRUE
 ENV PYTHONDONTWRITEBYTECODE=TRUE
 ENV PATH="/opt/program:${PATH}"
@@ -24,4 +25,5 @@ ENV MODEL_PATH="/opt/ml/model"
 
 # Set up the program in the image
 COPY algorithm_code /opt/program
+RUN chmod +x /opt/program/*
 WORKDIR /opt/program

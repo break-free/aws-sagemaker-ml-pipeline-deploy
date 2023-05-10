@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import time
 import boto3
 from io import StringIO
 import pandas as pd
@@ -12,7 +13,7 @@ client = boto3.client('sagemaker-runtime')
 
 args = parser.parse_args()
 endpoint = args.endpoint
-endpoint_name = endpoint # Your endpoint name.
+endpoint_name = "breakfree-ml-pipeline-20230510202603" # Your endpoint name.
 content_type = "text/csv"   # The MIME type of the input data in the request body.
 
 payload = pd.DataFrame([[1.5,0.2,4.4,2.6]])
@@ -28,3 +29,4 @@ response = client.invoke_endpoint(
 
 label = response['Body'].read().decode('utf-8')
 print(label)
+time.sleep(500)
