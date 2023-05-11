@@ -1,3 +1,3 @@
 # Make it so that the line endings are always Linux-based:
 * text=auto
-* text eol=lf
+# * text eol=lf
