@@ -34,15 +34,21 @@ For the ML pipeline and SageMaker to train and provision an endpoint for inferen
 ```bash
 $ cd src/container
 $ export AWS_PROFILE=<your_aws_cli_profile_name> #If already done at the step above and profile still active, skip this step
-$ aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <account_number>.dkr.ecr.eu-west-1.amazonaws.com
+$ aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <account_number>.dkr.ecr.us-east-1.amazonaws.com
 $ docker build -t ml-training .
 $ docker tag ml-training:latest <account_number>.dkr.ecr.eu-west-1.amazonaws.com/<ecr_repository_name>:latest
 $ docker push <account_number>.dkr.ecr.eu-west-1.amazonaws.com/<ecr_repository_name>
 ```
 
-*Note* that when using `podman` in place of `docker` that during the build step you must provide the required format, i.e.:
+Or, if you prefer, use Podman (this may be easier for Windows users:)
 
-   $ podman build --format docker -t ml-training . 
+
+   podman build --format docker -t ml-training . # be sure to include the docker format else this command won't work
+   # Connect to the ECR, store its login credentials, and hand that over to Podman:
+   aws ecr get-login-password --region us-east-1 | podman login --username AWS --password-stdin <account-number>.dkr.ecr.us-east-1.amazonaws.com/<repo-name>
+
+   # Push your local image:
+   podman push ml-training 428916778237.dkr.ecr.us-east-1.amazonaws.com/breakfree-ml-pipeline
 
 === Run the ML pipeline
 

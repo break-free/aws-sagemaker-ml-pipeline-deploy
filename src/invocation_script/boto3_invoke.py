@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 
-import time
 import boto3
 from io import StringIO
 import pandas as pd
@@ -29,4 +28,3 @@ response = client.invoke_endpoint(
 
 label = response['Body'].read().decode('utf-8')
 print(label)
-time.sleep(500)
